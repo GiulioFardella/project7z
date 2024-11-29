@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";  // Verifica che il percorso sia corretto
+import CustomNavbar from "./components/CustomNavbar";
+import CustomCarousel from "./components/CustomCarousel";
+import DropNav from "./components/DropNav";
+import MyFooter from "./components/MyFooter";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CustomNavbar />
+      <DropNav />
+      <h3 className="text-light ms-5 mt-3">VOLEVO FARE LE QUERY PER LE SAGHE MA NON SO SE CI RIUSCIRO'</h3>
+      <CustomCarousel />
+      <h3 className="text-light ms-5"> INTANTO DOCUMENTARI </h3>
+      <CustomCarousel />
+      <h3 className="text-light ms-5"> Spider-Man</h3>
+      <CustomCarousel />
+      <h3 className="text-light ms-5">Suggestions</h3><CustomCarousel />
+      <CustomCarousel />
+      <h3 className="text-light ms-5">Your Favourites</h3>
+      <CustomCarousel />
+      <MyFooter/>
     </div>
+     
   );
 }
 
