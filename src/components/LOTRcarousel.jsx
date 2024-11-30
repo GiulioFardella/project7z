@@ -3,33 +3,34 @@ import { Carousel, Col, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const URL = "http://www.omdbapi.com/?i=tt3896198&apikey=";
-const Key1 = "ae45a237"; 
+const Key1 = "ae45a237";
 
-function CustomCarousel({title}) {
+function LOTRcarousel({ title, filterKeyword }) { 
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-
-    fetch(`${URL}${Key1}&s=documentary`) 
+    fetch(`${URL}${Key1}&s=movie`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Errore nella risposta del server");
         }
         return response.json();
-       
       })
       .then((data) => {
-        console.log("rispostanumeroapi",data.Search.length)
-        if (data.Search) { console.log(data)
-          setMovies(data.Search.slice(0,20)); 
+        if (data.Search) {
+          setMovies(data.Search.slice(0, 30));
         }
       })
       .catch((error) => {
         console.error("Errore durante il fetch:", error);
       });
-  },);
+  }, []);
 
-  // Funzione per dividere i film in pagine per il carosello
+ 
+  const filteredMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(filterKeyword.toLowerCase())
+  );
+
   const chunkMovies = (movies, size) => {
     const chunks = [];
     for (let i = 0; i < movies.length; i += size) {
@@ -38,7 +39,7 @@ function CustomCarousel({title}) {
     return chunks;
   };
 
-  const movieChunks = chunkMovies(movies, 6); // Dividi i film in blocchi di 6
+  const movieChunks = chunkMovies(filteredMovies, 6); 
 
   return (
     <div>
@@ -63,19 +64,17 @@ function CustomCarousel({title}) {
                       justifyContent: "center",
                       flexDirection: "column",
                       alignItems: "center",
-                      
                     }}
                   >
                     <img
-                      className=""
                       src={movie.Poster}
                       alt={movie.Title}
                       style={{
-                        width: "100%", 
+                        width: "100%",
                         maxWidth: "660px",
                         height: "500px",
                         objectFit: "contain",
-                        borderRadius:"6px" 
+                        borderRadius: "6px",
                       }}
                     />
                   </div>
@@ -89,4 +88,4 @@ function CustomCarousel({title}) {
   );
 }
 
-export default CustomCarousel;
+export default LOTRcarousel;
