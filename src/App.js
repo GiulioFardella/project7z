@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <CustomNavbar />
       <DropNav />
-      <h3 className="text-light ms-5">Suggestions</h3><CustomCarousel />
+      <h3 className="text-light ms-5">Documentaries</h3><CustomCarousel />
    
       <h3 className="text-light ms-5 mt-3">BATMAN '' ho provato a fare un test per le query ma mi escono solo questi results </h3>
       <LOTRcarousel filterKeyword="Batman" />
